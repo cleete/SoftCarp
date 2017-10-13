@@ -1,0 +1,25 @@
+---
+title: "plotting"
+output: html_document
+---
+
+```{r }
+
+```
+
+
+```{r}
+gapminder <- read.csv("gapminder-FiveYearData.csv")
+
+library(ggplot2)
+
+start.with <- substr(gapminder$country, 1, 1)
+gapminderGF <- gapminder[start.with %in% c("G","F"), ]
+
+ggplot(gapminderGF, aes(year, lifeExp, color = country)) + geom_line() + facet_grid(~continent)
+```
+
+```{r}
+ggplot(data = gapminder, aes(x=year, y=lifeExp, by=country)) + geom_point() + geom_line(aes(color=continent))
+```
+
